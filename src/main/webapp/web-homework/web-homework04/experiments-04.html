@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>homework04</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        a {
+            text-decoration: none;
+        }
+        .container {
+            margin: 0 auto;
+            height: 500px;
+            max-width: 1200px;
+            background-color: #57b9fa;
+            padding-top: 40px;
+
+        }
+        .row {
+            margin: 0 auto;
+            padding-top: 20px;
+            display: flex;
+            max-width: 800px;
+            height: 400px;
+            background: white;
+            /*border: 3px solid red;*/
+        }
+        .left {
+            min-width: 180px;
+
+        }
+        .left-navigation {
+            display: inline-block;
+            margin: 12px;
+            padding: 5px;
+        }
+        i {
+            /*vertical-align 指定行内元素或表格单元格元素的垂直对齐方式!*/
+            vertical-align: middle;
+            margin-right: 15px;
+            color: black;
+        }
+        span {
+            /*vertical-align 指定行内元素或表格单元格元素的垂直对齐方式!*/
+            vertical-align: middle;
+            color: black;
+        }
+        .right {
+            /**/
+            max-width: 600px;
+            /*min-width: 400px;*/
+        }
+        @media (max-width: 600px) {
+            .left {
+                min-width: 60px;
+            }
+            .left span {
+                display: none;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+        <div class="container">
+            <div class="row">
+                <div class="left">
+                    <div class="left-navigation">
+                        <a href="#">
+                            <i class="material-icons">dashboard</i>
+                            <span>Dashboard</span>
+                        </a>
+                    </div>
+                    <div class="left-navigation">
+                        <a href="#">
+                            <i class="material-icons">computer</i>
+                            <span>Computer</span>
+                        </a>
+                    </div>
+                    <div class="left-navigation">
+                        <a href="#">
+                            <i class="material-icons">timelapse</i>
+                            <span>Timelapse</span>
+                        </a>
+                    </div>
+                    <div class="left-navigation">
+                        <a href="#">
+                            <i class="material-icons">style</i>
+                            <span>Style</span>
+                        </a>
+                    </div>
+                    <div class="left-navigation">
+                        <a href="#">
+                            <i class="material-icons">date_range</i>
+                            <span>Date</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="right">
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                        Assumenda enim nihil quas. Accusamus aliquid assumenda atque
+                        culpa dignissimos ducimus eos incidunt ipsum minus nobis officiis
+                        praesentium qui repellat tenetur vitae voluptas, voluptatum.
+                        Ab beatae consequuntur enim ipsam minus officia soluta temporibus
+                        tenetur vitae, voluptatibus. Cupiditate dicta dolore eaque est
+                        mollitia nesciunt recusandae repellat tenetur? A adipisci amet,
+                        aperiam dolore earum ex omnis! Distinctio dolor, harum ipsa maxime,
+                        molestiae nisi nobis, non quia ratione reiciendis saepe totam vero
+
+                    </p>
+                </div>
+            </div>
+        </div>
+</body>
+</html>

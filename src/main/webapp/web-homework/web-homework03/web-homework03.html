@@ -4,7 +4,42 @@
     <meta charset="UTF-8">
     <title>homework03</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
 
+        }
+        div .material-icons {
+            font-size: 87px;
+            color: blue;
+        }
+        .badge {
+            display: flex;
+        }
+        .badge-wrapper {
+            width: 40px;
+            height: 40px;
+            background-color: #fff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /*margin: -20px;*/
+            margin-left: -30px;
+
+
+        }
+        .number {
+            width: 30px;
+            height: 30px;
+            background-color: red;
+            border-radius: 50%;
+            font-size: 18px;
+            color: white;
+            text-align: center;
+            /*padding-top: 5px;*/
+        }
     </style>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
@@ -13,7 +48,9 @@
             <div class="badge-content">
                 <i class="material-icons">bug_report</i>
             </div>
-            <div class="badge-wrapper"></div>
+            <div class="badge-wrapper">
+                <div class="number">12</div>
+            </div>
         </div>
 </body>
 </html>
