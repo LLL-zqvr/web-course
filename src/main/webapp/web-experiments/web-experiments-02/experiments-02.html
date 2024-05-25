@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>experiments-02</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+    table th,table td {
+        padding: 10px;
+        text-align: center;
+        border-bottom: 1px solid black;
+
+    }
+    table {
+        border-collapse: collapse;
+
+    }
+    table tbody tr {
+        background-color: rgba(84, 84, 84, 0.12);
+    }
+    table tbody tr:nth-child(2n){
+        background-color: white;
+
+    }
+    button {
+        height: 30px;
+        width: 65px;
+        background-color: red;
+        border: none;
+        border-radius: 8px;
+    }
+    button a {
+        text-decoration: none;
+        color: white;
+        margin: 5px;
+    }
+    </style>
+</head>
+<body>
+    <h1>学生信息</h1>
+    <p>说明：以下为2046级学生名单，共4人，成功加载3人。警告：列表不包含降级学生/p>
+    <table>
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>姓名</th>
+            <th>班级</th>
+            <th>Email</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>1</td>
+            <td>郭立新</td>
+            <td>软件工程2046级1班</td>
+            <td>guo@example.com</td>
+            <td>
+                <button>
+                    <a href="#">修改</a>
+                </button>
+                <button>
+                    <a href="#">删除</a>
+                </button>
+            </td>
+
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>黄英</td>
+            <td>软件工程2046级1班</td>
+            <td>huang@example.com</td>
+            <td>
+                <button>
+                    <a href="#">修改</a>
+                </button>
+                <button>
+                    <a href="#">删除</a>
+                </button>
+            </td>
+
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>吕慧玲</td>
+            <td>软件工程2046级2班</td>
+            <td>lv@example.com</td>
+            <td>
+                <button>
+                    <a href="#">修改</a>
+                </button>
+                <button>
+                    <a href="#">删除</a>
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</body>
+</html>
