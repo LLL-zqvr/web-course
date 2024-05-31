@@ -9,7 +9,14 @@
             margin: 0;
             box-sizing: border-box;
         }
-
+        .success {
+            background-color: green;
+            border-radius: 5px;
+        }
+        .warm {
+            background-color: orange;
+            border-radius: 5px;
+        }
     table th,table td {
         padding: 10px;
         text-align: center;
@@ -43,7 +50,10 @@
 </head>
 <body>
     <h1>学生信息</h1>
-    <p>说明：以下为2046级学生名单，共4人，成功加载3人。警告：列表不包含降级学生/p>
+    <p>说明：以下为2046级学生名单，共4人，
+        <span class="success">成功加载3人</span>。
+        <span class="warm">警告：列表不包含降级学生</span>。
+    </p>
     <table>
         <thead>
         <tr>
