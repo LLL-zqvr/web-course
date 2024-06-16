@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        .row {
+            display: flex;
+        }
+        ul {
+            list-style: none;
+        }
+        .fab .material-icons {
+            font-size: 50px;
+            color: rgba(49, 174, 252, 0.86);
+        }
+        .fab .delete {
+            color: red;
+        }
+        .fab {
+            /*float: right;*/
+            right: 0;
+            position: absolute;
+            text-align: center;
+            /*margin-left: auto;*/
+            /*border: 1px solid black;*/
+
+        }
+        .fab-btn {
+            cursor:pointer;
+        }
+        .fab-menu {
+            display: none;
+        }
+
+    </style>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="fab">
+               <i class="material-icons fab-btn">account_circle</i>
+                <div class="fab-menu">
+                    <ul>
+                        <li><a href="#"><i class="material-icons">brush</i></a></li>
+                        <li><a href="#"><i class="material-icons">color_lens</i></a></li>
+                        <li><a href="#"><i class="material-icons">dashboard</i></a></li>
+                        <li><a href="#"><i class="material-icons delete" >delete_forever</i></a></li>
+                    </ul>
+                </div>
+            </div>
+
+
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+
+        $(document).ready(
+            ()=> {
+
+                let select = $("div[class=fab]");
+                let icon = $(".fab-btn");
+                select.hover(
+                    ()=> {
+                        icon.text("horizontal_rule");
+                        icon.animate(
+                            {rotate:"+=180deg"},
+                            400
+                        )
+                        // icon.animate(
+                        //
+                        //     {},500,
+                        //      // function(){icon.css({'transform':'rotate(180deg)','transition':''});}
+                        // );
+                        //console.log(1);
+                        //$("div[class=fab-menu]").css("display","block");
+                        $("div[class=fab-menu]").fadeIn();
+
+                    },()=>{
+                        // icon.animate(
+                        //
+                        //     {},500,
+                        //     function(){icon.css({'transform':'rotate(0deg)'});}
+                        // );
+                        icon.text("account_circle");
+                        icon.animate(
+                            {rotate:"+=180deg"},
+                            400
+                        )
+                        $("div[class=fab-menu]").fadeOut();
+
+                    }
+                )
+            }
+        )
+    </script>
+</body>
+</html>
