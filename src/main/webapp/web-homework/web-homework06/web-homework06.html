@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>模态框</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .modal {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(1,1,1,0);
+            /*background-color: red;*/
+            /*display: none;*/
+        }
+        .modal-dialog {
+            width: 400px;
+            background-color: white;
+            /*margin:  auto;*/
+            /*当父容器不是flex弹性容器，可以这样用transform实现子容器的居中*/
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            position: relative;
+            /*border: 1px solid black;*/
+            border: none;
+            /*添加阴影样式*/
+            box-shadow: 1px 1px 3px 2px gray;
+            border-radius: 5px;
+        }
+        .modal-dialog-header {
+            padding: 15px;
+            font-weight: bolder;
+            border-bottom: 1px solid #f1f1f1;
+        }
+        .modal-dialog-content {
+            padding-top: 10px;
+            padding-left: 10px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #f1f1f1;
+        }
+        .modal-dialog-footer {
+            padding: 10px;
+            text-align: right;
+
+        }
+        .modal-dialog-footer button {
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        .modal-dialog-footer .close {
+
+            background-color: gray;
+        }
+        .modal-dialog-footer .save {
+
+            background-color: rgba(12, 152, 239, 0.8);
+        }
+    </style>
+</head>
+<body>
+<p>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. A cumque
+    dolor doloremque enim fugit harum illo mollitia nobis odio optio,
+    provident temporibus tenetur voluptatibus. Alias aliquam at atque
+    beatae consequuntur corporis est et excepturi explicabo hic, id in
+    ipsum perferendis possimus quia recusandae rem repudiandae totam vel
+    voluptatem. Ab animi aperiam atque culpa cumque, debitis distinctio
+    dolor dolorem eius eligendi est harum illum iste iure laboriosam maiores
+    minima nemo nobis non obcaecati praesentium, provident qui rerum similique.
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. A cumque
+    dolor doloremque enim fugit harum illo mollitia nobis odio optio,
+    provident temporibus tenetur voluptatibus. Alias aliquam at atque
+    beatae consequuntur corporis est et excepturi explicabo hic, id in
+    ipsum perferendis possimus quia recusandae rem repudiandae totam vel
+    voluptatem. Ab animi aperiam atque culpa cumque, debitis distinctio
+    dolor dolorem eius eligendi est harum illum iste iure laboriosam maiores
+    minima nemo nobis non obcaecati praesentium, provident qui rerum similique.
+
+
+</p>
+<button> 点击我激活模态框</button>
+<!--            模态框容器-->
+<div class="modal">
+<!--                模态框信息容器-->
+    <div class="modal-dialog">
+<!--                        模态框内容标题区域-->
+        <div class="modal-dialog-header">Modal title</div>
+<!--                        模态框主内容区域-->
+        <div class="modal-dialog-content">Woohoo,you're reading this text in a modal!</div>
+<!--                       模态框页脚区域-->
+        <div class="modal-dialog-footer">
+            <button class="close">Close</button>
+            <button class="save">Save changes</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>
