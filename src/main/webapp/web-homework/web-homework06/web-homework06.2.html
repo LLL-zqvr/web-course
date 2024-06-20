@@ -100,13 +100,13 @@
 
 <!--            模态框容器-->
 <div class="modal" id="1">
-<!--                模态框信息容器(对话框)-->
+    <!--                模态框信息容器(对话框)-->
     <div class="modal-dialog">
-<!--                        模态框内容（对话框）标题区域-->
+        <!--                        模态框内容（对话框）标题区域-->
         <div class="modal-dialog-header">Modal title</div>
-<!--                        模态框（对话框）主内容区域-->
+        <!--                        模态框（对话框）主内容区域-->
         <div class="modal-dialog-content">Woohoo,you're reading this text in a modal!</div>
-<!--                       模态框（对话框）页脚区域-->
+        <!--                       模态框（对话框）页脚区域-->
         <div class="modal-dialog-footer">
             <button class="close">Close</button>
             <button class="save">Save changes</button>
@@ -118,28 +118,19 @@
 
     $(document).ready(
         ()=>{
-
             // 抽象设计模态框组件与激活组件。绑定模态框组件ID至激活组件的data-modal-target自定义属性中。
             let modal = $(".modal");
             // console.log(modal);
             let button = `<button data-modal-target="${modal.attr("id")}"> 点击我激活模态框</button>`;
             $("p").after(button);
-
             // 监听任何具有data-modal-target属性组件的点击事件，获取其绑定的模态框id值，
-            // 从而基于id获取模态框对象，渐出该模态框。
             let active = $("[data-modal-target]");
-            let modalId;
-            //用checkedModal表示基于id选中的模态框对象
-            let checkedModal;
-
-            //dialog表示checkedModal的对话框
-            let dialog;
 
             active.click(
                 function (){
-                    modalId = $(this).attr("data-modal-target");
-                    // console.log(modalId);
-                    checkedModal = modal.filter(
+                    // 从而基于id获取模态框对象，渐出该模态框。
+                    let modalId = $(this).attr("data-modal-target");
+                    let checkedModal = modal.filter(
                         function (){
                             return $(this).attr("id")===modalId;
                         }
@@ -147,52 +138,52 @@
                     // console.log(checkedModal);
                     checkedModal.fadeIn();
                     //通过animate()方法，添加对话框的动态定位，从默认的顶端，渐变定位到距上30px，即对话框从上向下渐入
-                    dialog = checkedModal.find(".modal-dialog");
+                    let dialog = checkedModal.find(".modal-dialog");
                     dialog.animate(
                         {top:30},"slow"
                     )
-                }
-            )
-            console.log(modalId);
-            console.log(checkedModal);
-            //事件的向上冒泡传递机制
-            //防止激活父元素的点击事件
-            $(".modal-dialog").click(
-                function (){
-                    // modal.fadeIn();
-                    return false;
-                }
-            )
-            //监听部分模态框（模态框内，对话框外的区域）。实现，当点击模态框内，对话框外，即空白背景区域时，关闭模态框。
-            //使用.not（）方法来实现
-            // console.log("***" + modal);
-            console.log(checkedModal);
-            if(checkedModal != null)
-            checkedModal.not(".modal-dialog").click(
-                function (){
-                    console.log(this);
-                    dialog.animate(
-                        {top:0},"slow"
-                    )
-                    checkedModal.fadeOut();
 
-                    return false;
-                }
-            )
-            //使用not选择器，这种写法也可以达到和.not()方法一样的效果
-            //    $(".modal:not(.modal-dialog)").click(
-            //     function (){
-            //         console.log(this);
-            //         modal.fadeOut();
-            //         return false;
-            //     }
-            // )
-            $(".close").click(
-                function (){
-                    dialog.animate(
-                        {top:0},"slow"
+                    //事件的向上冒泡传递机制
+                    //防止激活父元素的点击事件
+                    $(".modal-dialog").click(
+                        function (){
+                            // modal.fadeIn();
+                            return false;
+                        }
                     )
-                    checkedModal.fadeOut();
+                    //监听部分模态框（模态框内，对话框外的区域）。实现，当点击模态框内，对话框外，即空白背景区域时，关闭模态框。
+                    //使用.not（）方法来实现
+                    // console.log("***" + modal);
+                    console.log(checkedModal);
+                    if(checkedModal != null)
+                        checkedModal.not(".modal-dialog").click(
+                            function (){
+                                console.log(this);
+                                dialog.animate(
+                                    {top:0},"slow"
+                                )
+                                checkedModal.fadeOut();
+
+                                return false;
+                            }
+                        )
+                    //使用not选择器，这种写法也可以达到和.not()方法一样的效果
+                    //    $(".modal:not(.modal-dialog)").click(
+                    //     function (){
+                    //         console.log(this);
+                    //         modal.fadeOut();
+                    //         return false;
+                    //     }
+                    // )
+                    $(".close").click(
+                        function (){
+                            dialog.animate(
+                                {top:0},"slow"
+                            )
+                            checkedModal.fadeOut();
+                        }
+                    )
+
                 }
             )
 
