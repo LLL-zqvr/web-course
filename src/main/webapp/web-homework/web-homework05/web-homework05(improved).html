@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        .container {
+            max-width: 960px;
+            position: relative;
+            margin: 15px auto;
+        }
+
+        .fab {
+            /*float: right;*/
+            right: 15px;
+            top: 15px;
+            position: absolute;
+            text-align: center;
+            display: inline-block;
+            /*margin-left: auto;*/
+            /*border: 1px solid black;*/
+
+        }
+        .fab .fab-btn {
+            font-size: 4rem;
+            cursor:pointer;
+            color: deepskyblue;
+        }
+        .fab-menu {
+            list-style: none;
+            display: none;
+        }
+        .fab .fab-menu-icon{
+            font-size: 2.5rem;
+            color: deepskyblue;
+        }
+
+    </style>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+        <div class="fab">
+            <i class="material-icons fab-btn" data-replace="remove_circle">account_circle</i>
+                <ul class="fab-menu">
+                    <li><a href="#"><i class="material-icons fab-menu-icon">brush</i></a></li>
+                    <li><a href="#"><i class="material-icons fab-menu-icon">color_lens</i></a></li>
+                    <li><a href="#"><i class="material-icons fab-menu-icon">dashboard</i></a></li>
+                    <li><a href="#"><i class="material-icons fab-menu-icon" style="color: red">delete_forever</i></a></li>
+                </ul>
+        </div>
+
+
+    </div>
+</div>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+
+    $(document).ready(
+        ()=> {
+            let fabB;
+            let temp;
+            let fabMenu;
+            $(".fab").hover(
+                function() {
+                     fabB = $(this).children(".fab-btn");
+                    //拿到替换文本
+                   temp = fabB.text();
+                    fabB.text(fabB.data("replace"));
+                    fabB.animate(
+                        {rotate:"180deg"},
+                        400
+                    )
+                    fabMenu = fabB.next(".fab-menu");
+                    fabMenu.fadeIn();
+
+
+                },()=>{
+
+                    fabB.text(temp);
+                    fabB.animate(
+                        {rotate:"0deg"},
+                        400
+                    )
+                    fabMenu.fadeOut();
+
+                }
+            )
+        }
+    )
+</script>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="UTF-8">
+  <title>模态框</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    .container {
+      max-width: 960px;
+      margin: auto;
+    }
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vw;
+      background-color: rgba(1,1,1,0.5);
+      /*background-color: red;*/
+      display: none;
+    }
+    .modal-dialog {
+      width: 400px;
+      background-color: white;
+      position: relative;
+      /*当父容器不是flex弹性容器，可以这样用transform实现子容器的左右上下都居中*/
+      /*left: 50%;*/
+      /*top: 50%;*/
+      /*transform: translate(-50%,-50%);*/
+
+      /*但是为了添加从上往下渐出等效果，初始是默认在最上面左右居中即可*/
+      margin: auto;
+      /*border: 1px solid black;*/
+      /*添加阴影样式*/
+      box-shadow: 1px 1px 3px 2px gray;
+      border-radius: 5px;
+    }
+    .modal-dialog-header {
+      padding: 15px;
+      /*font-weight: bolder;*/
+      border-bottom: 1px solid #f1f1f1;
+    }
+    .modal-dialog-content {
+      padding-top: 10px;
+      padding-left: 10px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #f1f1f1;
+    }
+    .modal-dialog-footer {
+      padding: 10px;
+      text-align: right;
+
+    }
+    .modal-dialog button {
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .button-close {
+
+      background-color: gray;
+    }
+    .button-close:hover{
+      background-color: #1f1f1f;
+    }
+     .button-save {
+
+      background-color: rgba(12, 152, 239, 0.8);
+    }
+     .button-save:hover {
+
+      background-color: rgba(10, 43, 63, 0.8);
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. A cumque
+    dolor doloremque enim fugit harum illo mollitia nobis odio optio,
+    provident temporibus tenetur voluptatibus. Alias aliquam at atque
+    beatae consequuntur corporis est et excepturi explicabo hic, id in
+    ipsum perferendis possimus quia recusandae rem repudiandae totam vel
+    voluptatem. Ab animi aperiam atque culpa cumque, debitis distinctio
+    dolor dolorem eius eligendi est harum illum iste iure laboriosam maiores
+    minima nemo nobis non obcaecati praesentium, provident qui rerum similique.
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. A cumque
+    dolor doloremque enim fugit harum illo mollitia nobis odio optio,
+    provident temporibus tenetur voluptatibus. Alias aliquam at atque
+    beatae consequuntur corporis est et excepturi explicabo hic, id in
+    ipsum perferendis possimus quia recusandae rem repudiandae totam vel
+    voluptatem. Ab animi aperiam atque culpa cumque, debitis distinctio
+    dolor dolorem eius eligendi est harum illum iste iure laboriosam maiores
+    minima nemo nobis non obcaecati praesentium, provident qui rerum similique.
+    <br>
+    <button data-modal-target="modal-1"> 点击我激活模态框</button>
+  </p>
+
+  <!--            模态框容器-->
+  <div class="modal" id="modal-1">
+    <!--                模态框信息容器(对话框)-->
+    <div class="modal-dialog">
+      <!--                        模态框内容（对话框）标题区域-->
+      <div class="modal-dialog-header">
+        <h2>Modal title</h2>
+      </div>
+      <!--                        模态框（对话框）主内容区域-->
+      <div class="modal-dialog-content">Woohoo,you're reading this text in a modal!</div>
+      <!--                       模态框（对话框）页脚区域-->
+      <div class="modal-dialog-footer">
+        <button class="button-close">Close</button>
+        <button class="button-save">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+
+  $(document).ready(
+          ()=>{
+            // 抽象设计模态框组件与激活组件。绑定模态框组件ID至激活组件的data-modal-target自定义属性中。
+            // 监听任何具有data-modal-target属性组件的点击事件，获取其绑定的模态框id值，
+            $("[data-modal-target]").click(
+                    function (){
+                      // 从而基于id获取模态框对象，渐出该模态框。
+                      let modalId = $(this).data("modal-target");
+                      //基于模板字符串选出想要的模态框对象
+                      //$("#modalId")
+                      let checkedModal = $(`#${modalId}`);
+                      // console.log(checkedModal);
+                      checkedModal.fadeIn();
+                      //通过animate()方法，添加对话框的动态定位，从默认的顶端，渐变定位到距上30px，即对话框从上向下渐入
+                      checkedModal.children(".modal-dialog").animate({top:30});
+
+                      $(".modal, .button-close").click(
+                              function (){
+                                checkedModal.children(".modal-dialog").animate({top:0});
+                                checkedModal.fadeOut();
+                              }
+                      )
+
+                      //事件的向上冒泡传递机制
+                      //防止激活父元素的点击事件
+                      $(".modal-dialog").click(
+                              function (){
+                                // modal.fadeIn();
+                                return false;
+                              }
+                      )
+
+
+                    }
+            )
+
+
+
+
+          }
+  )
+</script>
+</body>
+</html>
