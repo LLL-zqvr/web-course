@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <input type="checkbox" class="test">
+    <form>
+        <input type="text">
+        <input type="text">
+<!--        <button type="submit"></button>-->
+<!--        <input type="text" class="disabled">-->
+    </form>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+    $(document).ready(
+        function(){
+            //按钮，表单选择器缺一不可（表单选择器不能换成后代选择器），为啥为啥为啥
+
+            $("form :input").prop("disabled", true);
+            $(".test").click(
+                function (){
+                    let result = !$(this).prop("checked");
+                    //$("form :input").not($(".disabled")).prop("disabled",result);
+                    $("form :input").prop("disabled",result);
+                }
+            )
+        }
+    )
+</script>
+</body>
+</html>
