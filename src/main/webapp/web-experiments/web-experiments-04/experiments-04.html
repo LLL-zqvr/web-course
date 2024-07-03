@@ -9,21 +9,25 @@
 <input type="checkbox" class="legal">我已阅读相关声明并遵守相关法律<br>
 <form id="register">
 
-    用户名：<input type="text" class="username"><br>
+    用户名：<input type="text" name="username"><br>
     未来意向：
-    <label><input type="radio" name="purpose" value="1">Java工程师</label>
-    <label><input type="radio" name="purpose" value="2">测试工程师</label>
-    <label><input type="radio" name="purpose" value="3">前端工程师</label>
+    <label><input type="radio" name="purp" value="1">Java工程师</label>
+    <label><input type="radio" name="purp" value="2">测试工程师</label>
+    <label><input type="radio" name="purp" value="3">前端工程师</label>
     <br>
+    <!-- 添加隐藏域 -->
+    <input type="hidden" name="purpose">
     请从以下课程中选择2项最喜欢的课程
     <ul>
-        <li><input type="checkbox">Web开发技术</li>
-        <li><input type="checkbox">软件项目管理</li>
-        <li><input type="checkbox">数据库管理</li>
-        <li><input type="checkbox">系统分析与设计</li>
+        <li><input type="checkbox" name="courses">Web开发技术</li>
+        <li><input type="checkbox" name="courses">软件项目管理</li>
+        <li><input type="checkbox" name="courses">数据库管理</li>
+        <li><input type="checkbox" name="courses">系统分析与设计</li>
     </ul>
     地址：
-    <input type="text"><button type="button">添加地址</button>
+    <ul name="ul_address">
+    </ul>
+    <input type="text" name="address"><button type="button" name="add">添加地址</button>
     <br>
     <button type="submit">提交</button>
 </form>
@@ -36,42 +40,79 @@
             1.先将表单所有输入域禁用
             2......
             */
-            let form = $("form :input").prop("disabled",true);
-
+            //#register后必须有空格
+            let form = $("#register :input").prop("disabled",true);
+            let flag1 ;
             $(".legal").click(
                 function (){
                     //判断是否选中
                     let result = !$(this).prop("checked");
                     //提交按钮另外计算，并且设置提交按钮也可以防止触发form中enter键的触发（触发则会提交表单第一个元素的点击事件，导致未完成表单提交）
                     form.not($("button:submit")).prop("disabled",result);
+
                     //button.not(".submit").prop("disabled",result);
                     //用户名必须大于等于6位，否则弹出警告框
-                    $(".username").change(
+                    $("input[name=username]").change(
                         function (){
                             //trim() 方法用于删除字符串的头尾空白符，空白符包括：空格、制表符 tab、换行符等其他空白符等。
                             //trim() 方法不会改变原始字符串。
-                           if($(this).val().trim().length < 6){
+                            flag1 = $(this).val().trim().length < 6;
+                           if(flag1){
                                alert("用户名必须大于等于6位！");
 
                            }
                         }
                     )
-
+                    let radios = $("input[name=purp]");
+                    let hiddenInput = $("input[name=purpose]");//存放radios的值
+                    console.log(hiddenInput.val());
                     //未来意向，支持取消选中的单选框
-                    $("input[name=purpose]").click(
+                    //意向，再次点击radio时取消radio的选中状态。
+                    radios.click(
                         function (){
-
-                            if($(this).prop("checked")){
-
+                            //相等，第二次点击
+                            if($(this).val() === hiddenInput.val()){
+                                hiddenInput.val(0);
                                 $(this).prop("checked",false);
 
+                            }
+                            else{
+                                hiddenInput.val($(this).val());
+                                console.log(hiddenInput.val());
                             }
                         }
                     )
                     //喜欢的课程，能且仅能选择2项
-                    //当用户名大于等于6字符，喜欢的课程小于等于2项时，不可提交表单
+                     let courses = $("input[name=courses]");
+                    let flag2 ;
+                     courses.click(
+                         function (){
+                             flag2 = courses.filter(":checked").length < 2;
+                             if(flag2){
+                                 courses.not(":checked").prop("disabled",false);
+                             }else{
+                                 courses.not(":checked").prop("disabled",true);
+                             }
+                         }
+                     )
+                    //当用户名小于6字符，喜欢的课程小于2项时，不可提交表单
+                    $("input[name=username], input[name=courses]").change(
+                        ()=>{
+                            let result = flag1||flag2;
+                            $("button:submit").prop("disabled",result);
+                        }
+                    )
                     //输入地址后，点击添加地址按钮，将输入信息动态添加至列表
-                    //意向，再次点击radio时取消radio的选中状态。
+                    $("button[name=add]").click(
+                       () => {
+                            let input = $("input[name=address]");
+                            let item = $(`<li>${input.val()}</li>`);
+                            input.val("");
+                            item.css("display", "none");
+                            $("ul[name=ul_address]").append(item);
+                            item.fadeIn(1000);
+                        }
+                    )
                 }
             )
 
